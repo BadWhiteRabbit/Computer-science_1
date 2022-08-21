@@ -22,7 +22,7 @@ int WeightConWin;           // Ширина консоли
 public:
 
 
-Menu(string hudname, int sizemenu) //конструктор с минимальными параметрами
+Menu(string hudname, int sizemenu) //конструктор
 {
 HudName = hudname;
 SizeMenu = sizemenu;
@@ -31,14 +31,47 @@ ListName = new string[sizemenu];
 Border = 0;
 Buttom = 0;
 PosStar = 0;
+WeightConWin = 120;
 }
  
+    
+    void weight_text(string *ListName) //метод для выравнивания текста
+    {
+        for (int i = 0; i < SizeMenu; ++i)
+        {
+            int S = ListName[i].length();
+            int count = S / (WeightConWin - 4); // -4 это колличество неучитываемых элементов, от WeightConWin еще зависит 2 метода
+            int pos = (WeightConWin + 1) - 4;
+
+            if(count > 0)
+            {
+                for(; count != 0 ; --count) //количество переносов строки
+                {
+                    bool word = true;
+                    while(word) // тут нужно будет поменять на случай если одно слово будет превышать размер поля
+                    {
+                        if(ListName[i][pos] == ' ')
+                        {
+                            ListName[i].replace(pos, 1, "\n");
+                            pos = pos + (WeightConWin + 1) - 4; 
+                            word = false;
+                        }
+                        else pos--;
+                    }
+                }//for count
+            }//if count
+
+        }
+
+    }
+
+
     void stars_hud(string HudName) //отображение названия меню типа *********[название]********
     {
-        WeightConWin = 120;
+        
         int A = WeightConWin - HudName.length() - 2;
-        int B = A / 2;
-        for (int i = 0; i < A; ++i) 
+        int B = A / 2 + 2; // (+ 2) - костыль (выравнивание для [Задание №]), строка ниже тоже самое
+        for (int i = 0; i < A + 2; ++i) 
         {
             std::cout << "*";
             if(i == B) std::cout <<"["<<HudName<<"]";
@@ -48,7 +81,6 @@ PosStar = 0;
 
    void stars_hud(string HudName, int NumberTask) //отображение названия меню типа *********[Задание №x]********
     {
-        WeightConWin = 120;
 
         std::string s = std::to_string(NumberTask);
 
@@ -76,6 +108,7 @@ PosStar = 0;
 
     int menu_() 
     {
+        weight_text(ListName);
         do
         {
             system("clear"); 
