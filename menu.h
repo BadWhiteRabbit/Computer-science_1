@@ -34,39 +34,7 @@ PosStar = 0;
 WeightConWin = 120;
 }
  
-    
-    void weight_text(string *ListName) //метод для выравнивания текста
-    {
-        for (int i = 0; i < SizeMenu; ++i)
-        {
-            int S = ListName[i].length();
-            int count = S / (WeightConWin - 4); // -4 это колличество неучитываемых элементов, от WeightConWin еще зависит 2 метода
-            int pos = (WeightConWin + 1) - 4;
-
-            if(count > 0)
-            {
-                for(; count != 0 ; --count) //количество переносов строки
-                {
-                    bool word = true;
-                    while(word) // тут нужно будет поменять на случай если одно слово будет превышать размер поля
-                    {
-                        if(ListName[i][pos] == ' ')
-                        {
-                            ListName[i].replace(pos, 1, "\n");
-                            pos = pos + (WeightConWin + 1) - 4; 
-                            word = false;
-                        }
-                        else pos--;
-                    }
-                }//for count
-            }//if count
-
-        }
-
-    }
-
-
-    void stars_hud(string HudName) //отображение названия меню типа *********[название]********
+    void stars_hud() //отображение названия меню типа *********[название]******** string HudName
     {
         
         int A = WeightConWin - HudName.length() - 2;
@@ -79,7 +47,7 @@ WeightConWin = 120;
         std::cout << "\n\n";
     }
 
-   void stars_hud(string HudName, int NumberTask) //отображение названия меню типа *********[Задание №x]********
+   void stars_hud( int NumberTask) //отображение названия меню типа *********[Задание №x]******** //string HudName,
     {
 
         std::string s = std::to_string(NumberTask);
@@ -95,12 +63,12 @@ WeightConWin = 120;
     }
 
 
-    void init_menu(char* FoundationMenu, int SizeMenu) //инициализация меню пустым значением
+    void init_menu() //инициализация меню пустым значением char* FoundationMenu, int SizeMenu
     {
         for (int i = 0; i < SizeMenu; ++i) FoundationMenu[i] = ' ';
     }
 
-    void print_menu(char* FoundationMenu, string *ListName, int SizeMenu) // отображение меню [*] название
+    void print_menu() // отображение меню [*] название //char* FoundationMenu, string *ListName, int SizeMenu
     {
         for (int i = 0; i < SizeMenu; ++i) std::cout <<"["<< FoundationMenu[i] <<"] " << ListName[i] << "\n";
     }
@@ -108,15 +76,15 @@ WeightConWin = 120;
 
     int menu_() 
     {
-        weight_text(ListName);
+        
         do
         {
-            system("clear"); 
-            stars_hud(HudName);
-            init_menu(FoundationMenu, SizeMenu);
+            system("clear"); //cls
+            stars_hud(); //HudName
+            init_menu(); //FoundationMenu, SizeMenu
             FoundationMenu[PosStar] = '*';
             Border = PosStar;
-            print_menu(FoundationMenu, ListName, SizeMenu);
+            print_menu(); //FoundationMenu, ListName, SizeMenu
             Buttom = mygetch();
             if (Buttom == 65) PosStar--;
             if (Buttom == 66) PosStar++;
@@ -131,13 +99,13 @@ int menu_(int NumberTask) //Меню для заданий
        PosStar = 0;
         do
         {
-            system("clear"); 
+            system("clear");  //cls
 
-            stars_hud(HudName,NumberTask);
-            init_menu(FoundationMenu, SizeMenu);
+            stars_hud(NumberTask); //HudName
+            init_menu(); //FoundationMenu, SizeMenu
             FoundationMenu[PosStar] = '*';
             Border = PosStar;
-            print_menu(FoundationMenu, ListName, SizeMenu);
+            print_menu(); //FoundationMenu, ListName, SizeMenu
             Buttom = mygetch();
             if (Buttom == 65) PosStar--;
             if (Buttom == 66) PosStar++;
