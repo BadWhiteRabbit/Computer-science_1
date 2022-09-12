@@ -91,18 +91,34 @@ Choose_Menu_Task4.ListName[1] = "Нет\n";
 
                     case 3:
                     {
-                      /*  
+                       
                         task_3:                    
                         B = Task_Menu.menu_(A + 1);
                         if(B == 1) goto go_menu;
-                        C = Choose_Menu_Task4.menu_()
-                        //task_tree();
+                        C = Choose_Menu_Task4.menu_();
+
+                        task_four(C);
 
                         B = mygetch();
                         goto task_3;
 
-                    */
+                    
                     }//case 3
+
+                    case 4:
+                    {
+                        task_4:                    
+                        B = Task_Menu.menu_(A + 1);
+                        if(B == 1) goto go_menu;
+
+                        task_five();
+
+                        B = mygetch();
+                        goto task_4;
+                    }
+                   
+
+
 
                     default:
                     {

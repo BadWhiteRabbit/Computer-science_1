@@ -33,7 +33,7 @@ void print_array(int A[], int size) {
 
 void task_one()
 {
-	system("clear");
+	my_clear();
     printf("Задание № 1\n");
 	printf("Введите двузначное число ");
 	int a;
@@ -46,6 +46,7 @@ void task_one()
 void task_two()
 {
 	//Ввести коэффициенты квадратного уравнения и выдать либо сообщение, что уравнение не квадратное, либо сообщение о количестве и значении корней
+			my_clear();
 			printf("Задание № 2\n");
 			printf("Введите коэффициенты квадратного уравнения\n");
 			int coef_A, coef_B, coef_C;
@@ -114,7 +115,8 @@ void task_two()
 
 void task_tree()
 {
-	printf("Задание № 3\n");
+	 my_clear();
+	 printf("Задание № 3\n");
      int bigN_3, digit_3;
      printf("Введите целое число, состоящее не более чем из 10 цифр: ");
      scanf("%d", &bigN_3);
@@ -146,50 +148,83 @@ void task_tree()
 }
 
 
-/*void task_four()
+void task_four(int a)
 {
 	//Ввести массив из чисел (из 30 элементов) и найти среднее арифметическое значение его элементов
+			my_clear();
 			printf("Задание № 4\n");
-			int input_task4;
-			printf("Вы хотите использовать случайные значения? (в случае отказа введите тридцатизначное чило)\n");
-			printf("1.Да\n2.Нет\n");
-			scanf_s("%d", &input_task4);
-			switch (input_task4) {
-			case 1: { //random case
+			int N_task4 = 30;
+			switch (a) 
+			{
+			case 0: { 
 				int A[N_task4] = { 0 };
 				double arith = 0;
-				for (int i = 0; i < N_task4; i++) {
+				for (int i = 0; i < N_task4; i++) 
+				{
 					A[i] = rand() % 100;
 					arith = arith + A[i];
 					printf("%3d", A[i]);
-				}
+				} //case 0 (random)
 				printf("\n");
 				printf("Среднее арифметическое = %.2f\n", arith / N_task4);
-				fWait();
-				break;
+				printf("Для продолжения нажмите любую клавишу");
+        		mygetch();
+				return;
 			}
-			case 2: { //enter a thirty-digit number
-				int A[N_task4] = { 0 };
+			case 1: 
+			{ 
+				
 				double arith = 0;
 				int number_30;
-				printf("Заполните массив (тридцатизначное чило)\n");
-				for (int i = 0; i < N_task4; i++) {
-					scanf_s("%d", &number_30);
+				printf("Сколько чисел? ");
+				scanf("%d", &N_task4);
+				int A[N_task4] = { 0 };
+				printf("Введите числа:\n");
+				for (int i = 0; i < N_task4; i++) 
+				{
+					scanf("%d", &number_30);
 					A[i] = number_30;
 					arith = arith + A[i];
-					printf("%d ", number_30);
+					printf("[%d] - %d\n", i + 1, number_30);
 				}
-				printf("Среднее арифметическое = %.2f\n", arith / N_task4);
-				fWait();
-				break;
-			}
-			default: {
-				printf("Неправильный ввод!\n");
-				break;
+				
+				printf("Среднее арифметическое = %.2f\n\n", arith / N_task4);
+				printf("Для продолжения нажмите любую клавишу");
+        		mygetch();
+				return;
+			}//enter a thirty-digit number
+			
 
 			}
+			
+			
+}
 
+
+void task_five()
+{
+			my_clear();
+			printf("Задание № 5\n");
+			int N_task5 = 20;
+			int A[N_task5] = { 0 };
+			
+			for (int i = 0; i < N_task5; i++) {
+				A[i] = i;
+				printf("%3d", A[i]);
 			}
-			fWait();
-			break;
-}*/
+			printf("\n");
+
+
+			for (int i = 0; i < N_task5 / 2; i++) 
+			{
+				int tmp = A[i];
+				A[i] = A[N_task5 - i - 1];
+				A[N_task5 - i - 1] = tmp;
+			}
+
+			for (int i = 0; i < N_task5; i++) printf("%3d", A[i]);
+			printf("\n\n");
+			printf("Для продолжения нажмите любую клавишу");
+        	mygetch();
+			return;
+}
