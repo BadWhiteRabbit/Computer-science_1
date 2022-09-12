@@ -34,6 +34,35 @@ PosStar = 0;
 WeightConWin = 120;
 }
  
+bool is_word(std::string B, int i) // для метода LineBreak
+{
+    if(B[i] == ' ') return true;
+    else return false;
+}
+
+
+void LineBreak(std::string B, int weightwindow) // Метод для выравнивания текста (Только английский язык)
+{
+    
+    int size = B.length() / weightwindow;
+    std::cout << "size = " << size << "\n";
+    int pos = weightwindow;
+    for(int i = 0; i != size; ++i)
+    {
+        
+        while(is_word(B,pos) != true) --pos;
+        B.replace(pos, 1, "\n");
+        pos = pos + weightwindow;
+    
+    }
+
+    std::cout << B << std::endl; //ПОд вопросом
+}
+    
+
+
+
+
     void stars_hud() //отображение названия меню типа *********[название]******** string HudName
     {
         
