@@ -1,13 +1,5 @@
-//#ifndef INC_1_MAIN_MENU_MENU_H
-//#define INC_1_MAIN_MENU_MENU_H
-//#endif //INC_1_MAIN_MENU_MENU_H
 #include "function.h"
-
-
-
 using std::string;
-
-
 
 class Menu {
 public:
@@ -22,7 +14,7 @@ int WeightConWin;           // Ширина консоли
 public:
 
 
-Menu(string hudname, int sizemenu) //конструктор
+Menu(string hudname, int sizemenu) 
 {
 HudName = hudname;
 SizeMenu = sizemenu;
@@ -56,7 +48,7 @@ void LineBreak(std::string B, int weightwindow) // Метод для вырав�
     
     }
 
-    std::cout << B << std::endl; //ПОд вопросом
+    std::cout << B << std::endl; 
 }
     
 
@@ -76,7 +68,7 @@ void LineBreak(std::string B, int weightwindow) // Метод для вырав�
         std::cout << "\n\n";
     }
 
-   void stars_hud( int NumberTask) //отображение названия меню типа *********[Задание №x]******** //string HudName,
+   void stars_hud( int NumberTask) //отображение названия меню типа *********[Задание №x]********
     {
 
         std::string s = std::to_string(NumberTask);
@@ -92,7 +84,7 @@ void LineBreak(std::string B, int weightwindow) // Метод для вырав�
     }
 
 
-    void init_menu() //инициализация меню пустым значением char* FoundationMenu, int SizeMenu
+    void init_menu() //инициализация меню пустым значением
     {
         for (int i = 0; i < SizeMenu; ++i) FoundationMenu[i] = ' ';
     }
@@ -108,12 +100,12 @@ void LineBreak(std::string B, int weightwindow) // Метод для вырав�
         
         do
         {
-            system("clear"); //cls
-            stars_hud(); //HudName
-            init_menu(); //FoundationMenu, SizeMenu
+            system("clear");
+            stars_hud();
+            init_menu();
             FoundationMenu[PosStar] = '*';
             Border = PosStar;
-            print_menu(); //FoundationMenu, ListName, SizeMenu
+            print_menu();
             Buttom = mygetch();
             if (Buttom == 65) PosStar--;
             if (Buttom == 66) PosStar++;
