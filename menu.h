@@ -13,7 +13,6 @@ int PosStar;                // Координата '*'
 int WeightConWin;           // Ширина консоли
 public:
 
-
 Menu(string hudname, int sizemenu) 
 {
 HudName = hudname;
@@ -32,7 +31,6 @@ bool is_word(std::string B, int i) // для метода LineBreak
     else return false;
 }
 
-
 void LineBreak(std::string B, int weightwindow) // Метод для выравнивания текста (Только английский язык)
 {
     
@@ -50,39 +48,31 @@ void LineBreak(std::string B, int weightwindow) // Метод для вырав�
 
     std::cout << B << std::endl; 
 }
-    
-
-
-
-
-    void stars_hud() //отображение названия меню типа *********[название]******** string HudName
-    {
+void stars_hud() //отображение названия меню типа *********[название]******** string HudName
+{
         
-        int A = WeightConWin - HudName.length() - 2;
-        int B = A / 2 + 2; // (+ 2) - костыль (выравнивание для [Задание №]), строка ниже тоже самое
-        for (int i = 0; i < A + 2; ++i) 
-        {
-            std::cout << "*";
-            if(i == B) std::cout <<"["<<HudName<<"]";
-        }
-        std::cout << "\n\n";
-    }
-
-   void stars_hud( int NumberTask) //отображение названия меню типа *********[Задание №x]********
+    int A = WeightConWin - HudName.length() - 2;
+    int B = A / 2 + 2; // (+ 2) - костыль (выравнивание для [Задание №]), строка ниже тоже самое
+    for (int i = 0; i < A + 2; ++i) 
     {
-
-        std::string s = std::to_string(NumberTask);
-
-        int A = WeightConWin - HudName.length() - s.length() - 2;
-        int B = A / 2;
-        for (int i = 0; i < A; ++i) 
-        {
-            std::cout << "*";
-            if(i == B) std::cout <<"["<< HudName << NumberTask << "]";
-        }
+        std::cout << "*";
+        if(i == B) std::cout <<"["<<HudName<<"]";
+    }
         std::cout << "\n\n";
     }
 
+void stars_hud( int NumberTask) //отображение названия меню типа *********[Задание №x]********
+{
+    std::string s = std::to_string(NumberTask);
+    int A = WeightConWin - HudName.length() - s.length() - 2;
+    int B = A / 2;
+    for (int i = 0; i < A; ++i) 
+    {
+        std::cout << "*";
+        if(i == B) std::cout <<"["<< HudName << NumberTask << "]";
+    }
+        std::cout << "\n\n";
+    }
 
     void init_menu() //инициализация меню пустым значением
     {
@@ -95,47 +85,42 @@ void LineBreak(std::string B, int weightwindow) // Метод для вырав�
     }
 
 
-    int menu_() 
+int menu_() 
+{
+    do
     {
-        
-        do
-        {
-            system("clear");
-            stars_hud();
-            init_menu();
-            FoundationMenu[PosStar] = '*';
-            Border = PosStar;
-            print_menu();
-            Buttom = mygetch();
-            if (Buttom == 65) PosStar--;
-            if (Buttom == 66) PosStar++;
-            if (PosStar > SizeMenu - 1 || PosStar < 0) PosStar = Border;
-        } while (Buttom != 10);
-
-        return PosStar;
-    }//menu_
+        system("clear");
+        stars_hud();
+        init_menu();
+        FoundationMenu[PosStar] = '*';
+        Border = PosStar;
+        print_menu();
+        Buttom = mygetch();
+        if (Buttom == 65) PosStar--;
+        if (Buttom == 66) PosStar++;
+        if (PosStar > SizeMenu - 1 || PosStar < 0) PosStar = Border;
+    } while (Buttom != 10);
+    return PosStar;
+}//menu_
 
 int menu_(int NumberTask) //Меню для заданий
+{
+   PosStar = 0;
+    do
     {
-       PosStar = 0;
-        do
-        {
-            system("clear");  //cls
-
-            stars_hud(NumberTask); //HudName
-            init_menu(); //FoundationMenu, SizeMenu
-            FoundationMenu[PosStar] = '*';
-            Border = PosStar;
-            print_menu(); //FoundationMenu, ListName, SizeMenu
-            Buttom = mygetch();
-            if (Buttom == 65) PosStar--;
-            if (Buttom == 66) PosStar++;
-            if (PosStar > SizeMenu - 1 || PosStar < 0) PosStar = Border;
-        } while (Buttom != 10);
-        return PosStar;
+        system("clear");  //cls
+        stars_hud(NumberTask); //HudName
+        init_menu(); //FoundationMenu, SizeMenu
+        FoundationMenu[PosStar] = '*';
+        Border = PosStar;
+        print_menu(); //FoundationMenu, ListName, SizeMenu
+        Buttom = mygetch();
+        if (Buttom == 65) PosStar--;
+        if (Buttom == 66) PosStar++;
+        if (PosStar > SizeMenu - 1 || PosStar < 0) PosStar = Border;
+    } while (Buttom != 10);
+    return PosStar;
     }//menu_
-
-
 };
 
 
